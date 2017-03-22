@@ -26,10 +26,10 @@ namespace MuscleFellow.Models
 
         public DbSet<City> Cities { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseMySQL(@"server=localhost;userid=root;password=btmoon781;database=homemanagedb;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseMySQL(@"server=localhost;userid=root;password=btmoon781;database=homemanagedb;");
+        //}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

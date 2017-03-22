@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MuscleFellow.Models;
+using MySQL.Data.EntityFrameworkCore.Extensions;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MuscleFellow.Web
 {
@@ -27,8 +30,18 @@ namespace MuscleFellow.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // add framework service
+            services.AddDbContext<MuscleFellowDbcontext>(options =>
+            options.UseMySQL(@"server=localhost;userid=root;password=btmoon781;database=homemanagedb;"));
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<MuscleFellowDbcontext>()
+                .AddDefaultTokenProviders();
             // Add framework services.
             services.AddMvc();
+
+            services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(20));
+
+            //services.AddTransient<IEmailSender>
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +68,12 @@ namespace MuscleFellow.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetService<MuscleFellowDbcontext>();
+                bool hasCreated = dbContext.Database.EnsureCreated();
+            }
         }
     }
 }
