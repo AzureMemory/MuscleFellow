@@ -32,7 +32,8 @@ namespace MuscleFellow.Web
         {
             // add framework service
             services.AddDbContext<MuscleFellowDbcontext>(options =>
-            options.UseMySQL(@"server=localhost;userid=root;password=btmoon781;database=homemanagedb;"));
+                options.UseMySQL(@"server=localhost;userid=root;password=btmoon781;database=homemanagedb;", b => b.MigrationsAssembly("MuscleFellow.Web")));
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MuscleFellowDbcontext>()
                 .AddDefaultTokenProviders();

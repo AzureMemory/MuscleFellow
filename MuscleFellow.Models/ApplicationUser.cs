@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MuscleFellow.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<Guid>
     {
         public ApplicationUser()
         {
-            base.Id = new Guid().ToString();
+            base.Id = new Guid();
         }
     }
 }
