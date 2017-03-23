@@ -6,13 +6,13 @@ namespace MuscleFellow.Models
 {
     public class CartItem
     {
-        public Guid CartID { get; set; }
+        public string CartID { get; set; }
 
         public string UserID { get; set; }
 
         public string SessionID { get; set; }
 
-        public Guid ProductID { get; set; }
+        public string ProductID { get; set; }
 
         public string ProductName { get; set; }
 

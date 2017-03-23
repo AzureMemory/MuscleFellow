@@ -11,8 +11,8 @@ namespace MuscleFellow.Data.Respositories
 {
     public class ProductRespository : IProductRepository
     {
-        private MuscleFellowDbcontext _dbContext;
-        public ProductRespository(MuscleFellowDbcontext dbContext)
+        private MuscleFellowDbContext _dbContext;
+        public ProductRespository(MuscleFellowDbContext dbContext)
         {
             _dbContext = dbContext;
         }

@@ -8,9 +8,9 @@ namespace MuscleFellow.Models
     {
         public int OrderDetailID { get; set; }
 
-        public Guid OrderID { get; set; }
+        public string OrderID { get; set; }
 
-        public Guid ProductID { get; set; }
+        public string ProductID { get; set; }
 
         public int Quantity { get; set; }
 

@@ -8,7 +8,7 @@ namespace MuscleFellow.Models
     public class Order
     {
         [Key]
-        public Guid OrderID { get; set; }
+        public string OrderID { get; set; }
 
         public string UserID { get; set; }
 

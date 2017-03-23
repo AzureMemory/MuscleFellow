@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using MuscleFellow.Models;
 using MySQL.Data.EntityFrameworkCore.Extensions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using MuscleFellow.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace MuscleFellow.Web
 {
@@ -31,11 +33,11 @@ namespace MuscleFellow.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // add framework service
-            services.AddDbContext<MuscleFellowDbcontext>(options =>
-                options.UseMySQL(@"server=localhost;userid=root;password=btmoon781;database=homemanagedb;", b => b.MigrationsAssembly("MuscleFellow.Web")));
+            services.AddDbContext<MuscleFellowDbContext>(options =>
+                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("MuscleFellow.Web")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<MuscleFellowDbcontext>()
+                .AddEntityFrameworkStores<MuscleFellowDbContext>()
                 .AddDefaultTokenProviders();
             // Add framework services.
             services.AddMvc();
@@ -70,10 +72,18 @@ namespace MuscleFellow.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            // 测试数据
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                var dbContext = serviceScope.ServiceProvider.GetService<MuscleFellowDbcontext>();
+                var dbContext = serviceScope.ServiceProvider.GetService<MuscleFellowDbContext>();
                 bool hasCreated = dbContext.Database.EnsureCreated();
+                //dbContext.Database.Migrate();
+                if (hasCreated)
+                {
+                    MuscleFellowSampleDataInitializer dbInitializer = new MuscleFellowSampleDataInitializer(dbContext);
+                    dbInitializer.LoadBasicInformationAsync();
+                    dbInitializer.LoadSampleDataAsync();
+                }
             }
         }
     }

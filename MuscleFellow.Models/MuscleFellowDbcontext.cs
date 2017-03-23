@@ -7,13 +7,13 @@ using System.Text;
 
 namespace MuscleFellow.Models
 {
-    public class MuscleFellowDbcontext : IdentityDbContext<IdentityUser>
+    public class MuscleFellowDbContext : IdentityDbContext<IdentityUser>
     {
-        public MuscleFellowDbcontext() { }
-        public MuscleFellowDbcontext(DbContextOptions options) : base(options) { }
+        public MuscleFellowDbContext() { }
+        public MuscleFellowDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Brand> Brands { get; set; }
-        public DbSet<Category> Categorys { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }

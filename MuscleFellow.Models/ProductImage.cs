@@ -10,7 +10,7 @@ namespace MuscleFellow.Models
         [Key]
         public int ImageID { get; set; }
 
-        public Guid ProductID { get; set; }
+        public string ProductID { get; set; }
 
         public string RelativeUrl { get; set; }
 

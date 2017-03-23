@@ -6,7 +6,7 @@ namespace MuscleFellow.Models
 {
     public class Product
     {
-        public Guid ProductID { get; set; }
+        public string ProductID { get; set; }
 
         public int BrandID { get; set; }
         
@@ -30,7 +30,7 @@ namespace MuscleFellow.Models
 
         public string UnitOfWeight { get; set; }
 
-        public float UintPrice { get; set; }
+        public float UnitPrice { get; set; }
 
         public string Currency { get; set; }
 
