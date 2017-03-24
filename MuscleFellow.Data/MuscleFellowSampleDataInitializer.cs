@@ -19,7 +19,7 @@ namespace MuscleFellow.Data
             _dbContext = context;
         }
 
-        public void LoadSampleDataAsync()
+        public async Task LoadSampleDataAsync()
         {
             // Add Categories
             _dbContext.Categories.Add(new Category { CategoryName = "健身器械" });
@@ -58,7 +58,7 @@ namespace MuscleFellow.Data
             });
 
             // Submit data into Database
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
             // Get CategoryIds
             string tester = string.Empty;
@@ -224,7 +224,7 @@ namespace MuscleFellow.Data
                     RelativeUrl = ProductDetailImagePath("9ED6C85F-F379-448B-4449-08D371929CF9", "10.jpg")
                 }
             });
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
             _dbContext.Products.Add(new Product
             {
@@ -296,7 +296,7 @@ namespace MuscleFellow.Data
                     RelativeUrl = ProductDetailImagePath("9FB5DDAE-41D2-4B62-444A-08D371929CF9", "10.jpg")
                 }
             });
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
             _dbContext.Products.Add(new Product
             {
@@ -368,7 +368,7 @@ namespace MuscleFellow.Data
                     RelativeUrl = ProductDetailImagePath("81DE0364-0401-4F38-444B-08D371929CF9", "10.jpg")
                 }
             });
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
             _dbContext.Products.Add(new Product
             {
@@ -440,7 +440,7 @@ namespace MuscleFellow.Data
                     RelativeUrl = ProductDetailImagePath("42FE79E8-FA1D-42AE-444C-08D371929CF9", "10.jpg")
                 }
             });
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
 
             _dbContext.Products.Add(new Product
@@ -513,9 +513,9 @@ namespace MuscleFellow.Data
                     RelativeUrl = ProductDetailImagePath("178A79A4-F8DF-4FD9-444D-08D371929CF9", "10.jpg")
                 }
             });
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
-        public void LoadBasicInformationAsync()
+        public async Task LoadBasicInformationAsync()
         {
             // Add provinces
             _dbContext.Provinces.AddRange(
@@ -555,7 +555,7 @@ namespace MuscleFellow.Data
                     new Province {Name = "澳门特别行政区" },
                     new Province {Name = "香港特别行政区" },
                 });
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
             // add cities
             _dbContext.Cities.AddRange(
@@ -953,7 +953,7 @@ namespace MuscleFellow.Data
                     new City { CityIndex = 1, ProvinceID = 34, Name = "香港特别行政区"},
             });
             // Submit data into Database
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
         #region --- Private functions ---
         private string ProductThumbImagePath(Guid productID, string productImage)

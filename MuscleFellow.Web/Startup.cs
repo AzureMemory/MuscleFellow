@@ -81,8 +81,8 @@ namespace MuscleFellow.Web
                 if (hasCreated)
                 {
                     MuscleFellowSampleDataInitializer dbInitializer = new MuscleFellowSampleDataInitializer(dbContext);
-                    dbInitializer.LoadBasicInformationAsync();
-                    dbInitializer.LoadSampleDataAsync();
+                    dbInitializer.LoadBasicInformationAsync().Wait();
+                    dbInitializer.LoadSampleDataAsync().Wait();
                 }
             }
         }
