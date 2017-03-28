@@ -76,14 +76,14 @@ namespace MuscleFellow.Web
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetService<MuscleFellowDbContext>();
-                bool hasCreated = dbContext.Database.EnsureCreated();
-                //dbContext.Database.Migrate();
-                if (hasCreated)
-                {
+                //bool hasCreated = dbContext.Database.EnsureCreated();
+                ////dbContext.Database.Migrate();
+                //if (hasCreated)
+                //{
                     MuscleFellowSampleDataInitializer dbInitializer = new MuscleFellowSampleDataInitializer(dbContext);
                     dbInitializer.LoadBasicInformationAsync().Wait();
-                    dbInitializer.LoadSampleDataAsync().Wait();
-                }
+                    //dbInitializer.LoadSampleDataAsync().Wait();
+                //}
             }
         }
     }

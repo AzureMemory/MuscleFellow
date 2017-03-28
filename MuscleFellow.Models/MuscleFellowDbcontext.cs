@@ -28,7 +28,7 @@ namespace MuscleFellow.Models
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
-        //    optionsBuilder.UseMySQL(@"server=localhost;userid=root;password=btmoon781;database=homemanagedb;");
+        //    optionsBuilder.UseMySQL(@"server=localhost;userid=root;password=btmoon781;database=mydb;Character Set=utf8;;Connect Timeout=120");
         //}
 
         protected override void OnModelCreating(ModelBuilder builder)
